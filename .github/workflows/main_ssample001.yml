@@ -19,7 +19,9 @@ jobs:
     name: Continuous Deployment - Development
     runs-on: windows-latest
     environment: dev
+    ## TAG運用もできる。
     if: github.ref == 'refs/heads/develop'
+    ## 
     steps:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@v2
@@ -43,7 +45,7 @@ jobs:
           app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
           slot-name: 'dev'
           package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E2B3CD9A7EDF4427BB3E340F4DF2A92E }}
+          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
   
   build-and-deploy-prd:
     name: Continuous Deployment - prd
